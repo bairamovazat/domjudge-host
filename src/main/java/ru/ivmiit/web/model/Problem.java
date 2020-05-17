@@ -18,19 +18,19 @@ public class Problem {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "externalid", length = 255)
+    @Column(name = "externalid")
     private String externalId;
 
-    @Column(name = "name", length = 255)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "timelimit")
+    @Column(name = "time_limit")
     private Float timeLimit;
 
-    @Column(name = "memlimit")
+    @Column(name = "mem_limit")
     private Integer memLimit;
 
-    @Column(name = "outputlimit")
+    @Column(name = "output_limit")
     private Integer outputLimit;
 
     @Column(name = "special_run", length = 32)
@@ -39,14 +39,14 @@ public class Problem {
     @Column(name = "special_compare", length = 32)
     private String specialCompare;
 
-    @Column(name = "special_compare_args", length = 255)
+    @Column(name = "special_compare_args")
     private String specialCompareArgs;
 
     @Column(name = "combined_run_compare")
     private Boolean combinedRunCompare;
 
     @Lob
-    @Column(name = "problemtext")
+    @Column(name = "problem_text")
     private String problemText;
 
     @Lob

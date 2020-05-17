@@ -23,10 +23,10 @@ public class SubmissionFile {
     private Submission submission;
 
     @Lob
-    @Column(name = "sourcecode")
+    @Column(name = "source_code")
     private String sourceCode;
 
-    @Column(name = "filename")
+    @Column(name = "file_name")
     private String fileName;
 
     @Column(name = "rank")

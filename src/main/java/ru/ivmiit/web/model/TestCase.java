@@ -41,7 +41,7 @@ public class TestCase {
     @Column(name = "sample")
     private Boolean sample;
 
-    @Column(name = "orig_input_filename")
-    private String originalInputFilename;
+    @Column(name = "original_input_file_name")
+    private String originalInputFileName;
 
 }

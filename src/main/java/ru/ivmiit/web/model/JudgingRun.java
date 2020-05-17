@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -26,13 +27,13 @@ public class JudgingRun {
     @JoinColumn(name = "test_case_id")
     private TestCase testCase;
 
-    @Column(name = "runresult", length = 32)
+    @Column(name = "run_result", length = 32)
     private String runResult;
 
-    @Column(name = "runtime")
+    @Column(name = "run_time")
     private Float runTime;
 
-    @Column(name = "endtime")
-    private Double endTime;
+    @Column(name = "end_time")
+    private Date endTime;
 
 }

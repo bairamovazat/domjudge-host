@@ -19,7 +19,7 @@ public class JudgeHost {
     private Long id;
 
     //В домджадже ид - hostname
-    @Column(name = "hostname", length = 64)
+    @Column(name = "host_name", length = 64)
     private String hostName;
 
     @Column(name = "active")

@@ -39,7 +39,7 @@ public class JudgingRunOutput {
     private String outputSystem;
 
     @Lob
-    @Column(name = "metadata")
+    @Column(name = "meta_data")
     private String metaData;
 
 }

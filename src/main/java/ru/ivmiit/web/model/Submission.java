@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -34,8 +35,8 @@ public class Submission {
     @JoinColumn(name = "language_id")
     private Language language;
 
-    @Column(name = "submittime")
-    private Double submitTime;
+    @Column(name = "submit_time")
+    private Date submitTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "judgehost_id")

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -13,71 +14,49 @@ import javax.persistence.*;
 @Table(name = "contest")
 public class Contest {
 
-    //int(4) unsigned (autoincrement)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "cid")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "externalid", length = 255)
-    private String externalId;
-
-    @Column(name = "name", length = 255)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "shortname", length = 255)
+    @Column(name = "short_name")
     private String shortName;
 
-    @Column(name = "activatetime")
-    private Double activateTime;
+    @Column(name = "activate_time")
+    private Date activateTime;
 
-    @Column(name = "starttime")
-    private Double startTime;
+    @Column(name = "start_time")
+    private Date startTime;
 
-    @Column(name = "freezetime")
-    private Double freezeTime;
+    @Column(name = "freeze_time")
+    private Date freezeTime;
 
-    @Column(name = "endtime")
-    private Double endTime;
+    @Column(name = "end_time")
+    private Date endTime;
 
-    @Column(name = "unfreezeTime")
-    private Double unfreezeTime;
+    @Column(name = "unfreeze_time")
+    private Date unfreezeTime;
 
-    @Column(name = "deactivatetime")
-    private Double deactivateTime;
-
-    @Column(name = "activatetime_string", length = 64)
-    private String activateTimeString;
-
-    @Column(name = "starttime_string", length = 64)
-    private String startTimeString;
-
-    @Column(name = "freezetime_string", length = 64)
-    private String freezeTimeString;
-
-    @Column(name = "endtime_string", length = 64)
-    private String endTimeString;
-
-    @Column(name = "unfreezetime_string", length = 64)
-    private String unfreezeTimeString;
-
-    @Column(name = "deactivatetime_string", length = 64)
-    private String deactivateTimeString;
+    @Column(name = "deactivate_time")
+    private Date deactivateTime;
 
     @Column(name = "finalizetime")
-    private Double finalizeTime;
+    private Date finalizeTime;
 
     @Lob
     @Column(name = "finalizecomment")
     private String finalizeComment;
 
-    @Column(name = "b", columnDefinition = "Contests that will be run with this install")
+    @Column(name = "b", columnDefinition = "Number of extra bronze medals")
     private Short b;
 
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @Column(name = "starttime_enabled")
+    @Column(name = "start_time_enabled")
     private Boolean startTimeEnabled;
 
     @Column(name = "process_balloons")

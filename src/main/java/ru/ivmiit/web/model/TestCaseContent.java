@@ -23,7 +23,6 @@ public class TestCaseContent {
     @Column(name = "input")
     private String input;
 
-
     @Lob
     @Column(name = "output")
     private String output;
