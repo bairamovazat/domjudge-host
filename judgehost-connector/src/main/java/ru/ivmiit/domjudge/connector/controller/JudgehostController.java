@@ -2,12 +2,14 @@ package ru.ivmiit.domjudge.connector.controller;
 
 import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.ivmiit.domjudge.connector.service.JudgehostService;
-import ru.ivmiit.domjudge.connector.transfer.CodeSourceDto;
-import ru.ivmiit.domjudge.connector.transfer.JudgehostsDto;
-import ru.ivmiit.domjudge.connector.transfer.NextJudginDto;
-import ru.ivmiit.domjudge.connector.transfer.UpdateJudgingDto;
+import ru.ivmiit.domjudge.connector.transfer.*;
 
 import java.util.List;
 
@@ -55,8 +57,13 @@ public class JudgehostController {
     }
 
     @PostMapping("/judgehosts/next-judging/{judgehostName}")
-    public NextJudginDto nextJudging(@PathVariable("judgehostName") String judgehostName) {
-        return judgehostService.nextJudging(judgehostName);
+    public ResponseEntity<Object> nextJudging(@PathVariable("judgehostName") String judgehostName) {
+        NextJudginDto nextJudginDto = judgehostService.nextJudging(judgehostName);
+        if (nextJudginDto == null) {
+            return ResponseEntity.ok("\"\"");
+        } else {
+            return ResponseEntity.ok(nextJudginDto);
+        }
     }
 
     @GetMapping("/contests/{contestId}/submissions/{submissionId}/source-code")
@@ -71,14 +78,31 @@ public class JudgehostController {
         judgehostService.updateJudging(judgehostName, judgingId, updateJudgingDto);
     }
 
-    @GetMapping("/testcases/{testCaseId}/file/input")
+    @GetMapping(value = "/testcases/{testCaseId}/file/input", produces = "application/json")
     public String getInputTestCaseId(@PathVariable("testCaseId") Long testCaseId) {
         return judgehostService.getInputTestCaseId(testCaseId);
     }
 
-    @GetMapping("/testcases/{testCaseId}/file/output")
+    @GetMapping(value = "/testcases/{testCaseId}/file/output", produces = "application/json")
     public String getOutputTestCaseId(@PathVariable("testCaseId") Long testCaseId) {
         return judgehostService.getOutputTestCaseId(testCaseId);
     }
 
+    @GetMapping(value = "/executables/{id}", produces = "application/json; charset=utf-8")
+    public String downloadFile(@PathVariable("id") String executableId) {
+        return judgehostService.getExecutables(executableId);
+    }
+
+    @PostMapping(value = "/judgehosts/internal-error", consumes = "application/x-www-form-urlencoded")
+    public Integer internalError(InternalErrorDto internalErrorDto) {
+        return judgehostService.internalError(internalErrorDto);
+    }
+
+
+    @PostMapping(value = "/judgehosts/add-judging-run/{hostname}/{judgingId}",
+            consumes = "application/x-www-form-urlencoded;charset=UTF-8")
+    public Integer addJudgingRun(@PathVariable("hostname") String hostName, @PathVariable("judgingId") Long judgingId,
+                                 AddJudgingRunDto addJudgingRunDto) {
+        return judgehostService.addJudgingRun(hostName, judgingId, addJudgingRunDto);
+    }
 }

@@ -1,9 +1,6 @@
 package ru.ivmiit.domjudge.connector.service;
 
-import ru.ivmiit.domjudge.connector.transfer.CodeSourceDto;
-import ru.ivmiit.domjudge.connector.transfer.JudgehostsDto;
-import ru.ivmiit.domjudge.connector.transfer.NextJudginDto;
-import ru.ivmiit.domjudge.connector.transfer.UpdateJudgingDto;
+import ru.ivmiit.domjudge.connector.transfer.*;
 
 import java.util.List;
 
@@ -21,4 +18,10 @@ public interface JudgehostService {
     String getOutputTestCaseId(Long testCaseId);
 
     List<JudgehostsDto> registerJudgehosts();
+
+    String getExecutables(String executableId);
+
+    Integer internalError(InternalErrorDto internalErrorDto);
+
+    Integer addJudgingRun(String hostName, Long judgingId, AddJudgingRunDto addJudgingRunDto);
 }
